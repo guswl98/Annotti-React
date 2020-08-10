@@ -17,60 +17,66 @@ class LabelPopover extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: 'none',
+      hide: true,
     };
   }
 
   click = () => {
     console.log('popover click');
-    this.setState({ display: '' });
+    const currentState = this.state.hide;
+    this.setState({ hide: !currentState });
   };
 
   render() {
     return (
-      <div className="select-color Popover" style={{ display: this.state.display }}>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Skyblue }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Green }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Brown }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Yellow }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Pink }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Puple }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Blue }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Orange }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Punch }}
-        ></span>
-        <span
-          className="label-color-cand label-color-circle"
-          style={{ backgroundColor: bgColors.Pantone }}
-        ></span>
-        <input id="color-input" type="text" placeholder="newLabel.color" />
-        <button className="label-color-cand-rgb">OK</button>
+      <div className="popover__menu">
+        <div
+          className="select-color"
+          style={this.state.hide ? { display: 'none' } : { display: 'block' }}
+        >
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Skyblue }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Green }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Brown }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Yellow }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Pink }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Puple }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Blue }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Orange }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Punch }}
+          ></span>
+          <span
+            className="label-color-cand label-color-circle"
+            style={{ backgroundColor: bgColors.Pantone }}
+          ></span>
+          <input id="color-input" type="text" placeholder="newLabel.color" />
+          <button className="label-color-cand-rgb">OK</button>
+        </div>
       </div>
     );
   }

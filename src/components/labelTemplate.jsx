@@ -4,12 +4,12 @@ import LabelPopover from './labelPopover';
 import { Popover } from 'antd';
 
 const { remote } = window.require('electron');
-const labelPopover = new LabelPopover();
 
 class labelTemplate extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: props.id, randomColor: null };
+    this.child = React.createRef();
+    this.state = { id: props.id, randomColor: null, hide: true };
   }
 
   removeLabel = (e) => {
@@ -22,8 +22,7 @@ class labelTemplate extends React.Component {
     while (labelColors.includes(randomColor)) {
       randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
-    remote.getGlobal('projectManager').appendLabel(null, randomColor);
-    var labelCounter = remote.getGlobal('projectManager').labelCounter;
+    var label = remote.getGlobal('projectManager').appendLabel(null, randomColor);
     return randomColor;
   };
 
@@ -32,19 +31,23 @@ class labelTemplate extends React.Component {
   }
 
   popover = () => {
-    console.log('CLick popover');
+    this.setState({ hide: !this.state.hide });
+    this.refs.child.click();
   };
 
   render() {
     return (
       <div className="appendLabel" id={this.state.id}>
         <div>
-          <span
-            className="label-color"
-            id={this.state.id}
-            style={{ backgroundColor: this.state.randomColor }}
-            type="primary"
-          ></span>
+          <div className="popover">
+            <span
+              className="label-color"
+              id={this.state.id}
+              style={{ backgroundColor: this.state.randomColor }}
+              onClick={this.popover}
+            ></span>
+            <LabelPopover ref="child"></LabelPopover>
+          </div>
           <input type="text" className="label" placeholder="LABEL" />
           <input type="checkbox" className="activate" id="labelID" />
           <span className="label-counter" id="labelID"></span>
