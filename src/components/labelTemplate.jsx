@@ -46,7 +46,7 @@ class labelTemplate extends React.Component {
               style={{ backgroundColor: this.state.randomColor }}
               onClick={this.popover}
             ></span>
-            <LabelPopover ref="child"></LabelPopover>
+            <LabelPopover id={this.state.id} ref="child"></LabelPopover>
           </div>
           <input type="text" className="label" placeholder="LABEL" />
           <input type="checkbox" className="activate" id="labelID" />

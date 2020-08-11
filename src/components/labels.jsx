@@ -46,6 +46,7 @@ class LabelMenu extends React.Component {
     console.log(this.state.children);
     remote.getGlobal('projectManager').deleteLabel(id);
     const newChildren = this.state.children;
+    console.log(remote.getGlobal('projectManager').getLabelInfos);
     delete newChildren[id];
     this.setState({
       children: newChildren,
